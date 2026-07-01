@@ -37,3 +37,14 @@ i Info → To login with a different account, run 'docker logout' followed by 'd
 
 Login Succeeded
 
+#Running containers
+
+ubuntu@ip-172-31-29-42:~/docker-learning-for-devops$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                      PORTS     NAMES
+454454093f79   ubuntu        "/bin/bash"              28 minutes ago   Exited (0) 27 minutes ago             vibrant_curie
+8205565f9ea7   nginx         "/docker-entrypoint.…"   34 minutes ago   Exited (0) 34 minutes ago             affectionate_tesla
+c64323364be9   hello-world   "/hello"                 46 minutes ago   Exited (0) 46 minutes ago             keen_pascal
+1bf4c414ee64   ubuntu        "/bin/bash"              2 hours ago      Exited (0) 2 hours ago                sad_driscoll
+326eb7805526   python        "python3"                17 hours ago     Exited (0) 17 hours ago               vigorous_kapitsa
+e1d319c1214f   nginx         "/docker-entrypoint.…"   18 hours ago     Exited (0) 16 hours ago               silly_darwin
+
