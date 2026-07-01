@@ -27,3 +27,13 @@ nginx:latest    ec4ed8b5299e        241MB           66MB    U
 python:latest   09b29c360b84       1.63GB          432MB    U
 ubuntu:latest   53958ec7b67c        160MB         45.3MB
 
+#Login to docker hub
+
+ubuntu@ip-172-31-29-42:~/docker-learning-for-devops$ docker login
+Authenticating with existing credentials... [Username: akshaysutar10]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+
