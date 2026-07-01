@@ -1,0 +1,65 @@
+#JavaCode
+ubuntu@ip-172-31-29-42:~/docker-learning-for-devops/java-docker-app$ cat HelloWorld.java
+public class HelloWorld
+{
+    public static void main(String[] args)
+    {
+        System.out.println("Hello from Docker and Java!");
+    }
+}
+
+#Dockerfile code
+ubuntu@ip-172-31-29-42:~/docker-learning-for-devops/java-docker-app$ cat Dockerfile
+FROM eclipse-temurin:17
+
+WORKDIR /app
+
+
+COPY HelloWorld.java .
+
+
+RUN javac HelloWorld.java
+
+
+CMD ["java","HelloWorld"]
+
+
+#Building Container
+ubuntu@ip-172-31-29-42:~/docker-learning-for-devops/java-docker-app$ docker build -t java-app .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  3.072kB
+Step 1/5 : FROM eclipse-temurin:17
+ ---> 91b6210cce02
+Step 2/5 : WORKDIR /app
+ ---> Using cache
+ ---> 7879f968145c
+Step 3/5 : COPY HelloWorld.java .
+ ---> 1e6158521ae3
+Step 4/5 : RUN javac HelloWorld.java
+ ---> Running in 35c1d708ace2
+ ---> Removed intermediate container 35c1d708ace2
+ ---> 06fc5932f11f
+Step 5/5 : CMD ["java","HelloWorld"]
+ ---> Running in 92f71b146f87
+ ---> Removed intermediate container 92f71b146f87
+ ---> 90b246f70f38
+Successfully built 90b246f70f38
+Successfully tagged java-app:latest
+
+
+#Runing container
+ubuntu@ip-172-31-29-42:~/docker-learning-for-devops/java-docker-app$ docker run java-app
+Hello from Docker and Java!
+
+#Details about image
+ubuntu@ip-172-31-29-42:~/docker-learning-for-devops/java-docker-app$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                      PORTS     NAMES
+f18a62eda5cc   java-app      "/__cacert_entrypoin…"   12 seconds ago   Exited (0) 11 seconds ago             gracious_perlman
+
+ubuntu@ip-172-31-29-42:~/docker-learning-for-devops/java-docker-app$ docker images
+                                                                                                                             i Info →   U  In Use
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+eclipse-temurin:17   91b6210cce02        687MB          217MB
