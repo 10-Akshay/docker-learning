@@ -9,7 +9,7 @@ IMAGE           ID             DISK USAGE   CONTENT SIZE   EXTRA
 nginx:latest    ec4ed8b5299e        241MB           66MB    U
 python:latest   09b29c360b84       1.63GB          432MB    U
 
-#Pull new image :
+# Pull new image :
 ubuntu@ip-172-31-29-42:~/docker-learning-for-devops$ sudo docker  pull ubuntu
 Using default tag: latest
 latest: Pulling from library/ubuntu
@@ -27,7 +27,7 @@ nginx:latest    ec4ed8b5299e        241MB           66MB    U
 python:latest   09b29c360b84       1.63GB          432MB    U
 ubuntu:latest   53958ec7b67c        160MB         45.3MB
 
-#Login to docker hub
+# Login to docker hub
 
 ubuntu@ip-172-31-29-42:~/docker-learning-for-devops$ docker login
 Authenticating with existing credentials... [Username: akshaysutar10]
@@ -37,7 +37,7 @@ i Info → To login with a different account, run 'docker logout' followed by 'd
 
 Login Succeeded
 
-#Running containers
+# Running containers
 
 ubuntu@ip-172-31-29-42:~/docker-learning-for-devops$ docker ps -a
 CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                      PORTS     NAMES
@@ -53,4 +53,39 @@ e1d319c1214f   nginx         "/docker-entrypoint.…"   18 hours ago     Exited 
 
 
 
+# Docker network 
+
+ubuntu@ip-172-31-29-42:~$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+fe443b9f51e5   bridge    bridge    local
+c62fab8db5af   host      host      local
+15896a163b44   none      null      local
+
+
+ubuntu@ip-172-31-29-42:~$ docker network create mynetwork1
+fa91eab5dbc37a8fe304a0c810a9788485a3aaa24b72a1ccc607157357cb8c4a
+
+ubuntu@ip-172-31-29-42:~$ docker network ls
+NETWORK ID     NAME         DRIVER    SCOPE
+fe443b9f51e5   bridge       bridge    local
+c62fab8db5af   host         host      local
+fa91eab5dbc3   mynetwork1   bridge    local
+15896a163b44   none         null      local
+
+
+ubuntu@ip-172-31-29-42:~$ docker network create mynetwork2 -d host
+Error response from daemon: only one instance of "host" network is allowed
+
+ubuntu@ip-172-31-29-42:~$ docker network create mynetwork2 -d bridge
+f459036e542aeb6bd553ec53815f85d96fa46c867b9ee0a137c5c6a8d30bfa0e
+
+
+ubuntu@ip-172-31-29-42:~$ docker network ls
+
+NETWORK ID     NAME         DRIVER    SCOPE
+fe443b9f51e5   bridge       bridge    local
+c62fab8db5af   host         host      local
+fa91eab5dbc3   mynetwork1   bridge    local
+f459036e542a   mynetwork2   bridge    local
+15896a163b44   none         null      local
 
